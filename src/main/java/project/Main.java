@@ -3,6 +3,9 @@
  */
 package project;
 
+import org.newdawn.slick.SlickException;
+
+
 /**
  * @author TSXN4236
  *
@@ -12,10 +15,9 @@ public class Main {
     /**
      * @param args
      */
-    public static void main(String[] args) {
-	// TODO Auto-generated method stub
-	System.out.println("toto");
-
-    }
+	private String[] args;
+	public Main() throws SlickException {
+		WindowGame.main(args);
+	}
 
 }
