@@ -22,9 +22,8 @@ public class DeplacementPersonnage {
 			this.x=x;
 			this.y=y;
 			this.direction=direction;
-			this.moving=moving;
+			this.moving=moving; 
 		}
-
 
 		public void init() throws SlickException {
 			SpriteSheet spriteSheet = new SpriteSheet("src/main/resources/sprites/c.png", 64, 64);

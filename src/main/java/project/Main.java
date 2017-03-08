@@ -5,13 +5,11 @@ package project;
 
 import org.newdawn.slick.SlickException;
 
-
 /**
- * @author TSXN4236
+ * @author ZMN8866
  *
  */
 public class Main {
-
     /**
      * @param args
      */
@@ -19,5 +17,4 @@ public class Main {
 	public Main() throws SlickException {
 		WindowGame.main(args);
 	}
-
 }

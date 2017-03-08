@@ -3,6 +3,9 @@
  */
 package project;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -11,6 +14,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
+
 
 
 // TODO: Auto-generated Javadoc
@@ -23,7 +27,7 @@ public class WindowGame extends BasicGame {
 	
 	private GameContainer container;
 	protected TiledMap tiledmap;
-	protected TiledMap controleurmap;
+	
 	protected Maps map;
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
@@ -32,21 +36,22 @@ public class WindowGame extends BasicGame {
 	protected float x = 50, y = 50+(5*32)+(16);
 	protected int direction=3;
 	protected boolean moving=false;
+	public enum ControleurPerso {haut,gauche,droite,bas,vide;}
+	public List<ControleurPerso> listControl = new LinkedList<ControleurPerso>();
 	
 	
 	public WindowGame() {
 		super("test 1 :: lighbot");
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
-		 this.controleur=new Controler(this.controleurmap);
-		 this.controleur.add(0);
+		 this.controleur=new Controler(this.listControl);
 	}
 
 	
 	public void render(GameContainer container, Graphics g) throws SlickException {
 //contenu du jeux
 		this.map.render();
-		this.controleur.render();
+		this.controleur.render(g);
 		g.setBackground(new Color( 204,204 ,255 ));
 		 g.setColor(new Color(0, 0, 0, .5f));
 		  g.fillOval(this.x - 16, this.y - 8, 32, 16);
@@ -152,20 +157,20 @@ else{
 			if(y>486 && y<582){// (550 -64) +96
 				if(x>50 && x <146){
 					this.str="controleur haut";
-					this.controleur.add(1);
+					this.controleur.add(ControleurPerso.haut);
 				}
 				else if(x>178 && x<274){
 					
 					this.str="controleur gauche";
-					this.controleur.add(2);
+					this.controleur.add(ControleurPerso.gauche);
 				}
 				else if(x>306 && x<402){
 					this.str="controleur droite";
-					this.controleur.add(3);
+					this.controleur.add(ControleurPerso.droite);
 				}
 				else if(x>434 && x<530){
 					this.str="controleur bas";
-					this.controleur.add(4);
+					this.controleur.add(ControleurPerso.bas);
 				}
 				else this.str="mouse controleur";
 			}
@@ -182,8 +187,8 @@ public void liste(){
 		
 		//this.str=""+listControleurClickUtilisateur.get(listControleurClickUtilisateur.size()-1);
 		this.str="";
-		for(int i=0;i<=this.controleur.listControleurClickUtilisateur.size()-1;i++){
-			this.str=this.str+this.controleur.listControleurClickUtilisateur.get(i)+", ";
+		for(int i=0;i<=this.controleur.listControl.size()-1;i++){
+			this.str=this.str+this.controleur.listControl.get(i)+", ";
 		}
 	}
 	}
