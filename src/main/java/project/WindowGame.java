@@ -31,6 +31,7 @@ public class WindowGame extends BasicGame {
 	protected Maps map;
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
+	protected Sequencer sq;
 	protected String str="";
 	private boolean bool=false;
 	protected float x = 50, y = 50+(5*32)+(16);
@@ -45,6 +46,7 @@ public class WindowGame extends BasicGame {
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
 		 this.controleur=new Controler(this.listControl);
+		 this.sq = new Sequencer(controleur);
 	}
 
 	
@@ -52,6 +54,7 @@ public class WindowGame extends BasicGame {
 //contenu du jeux
 		this.map.render();
 		this.controleur.render(g);
+		this.sq.decomposition(controleur,g);
 		g.setBackground(new Color( 204,204 ,255 ));
 		 g.setColor(new Color(0, 0, 0, .5f));
 		  g.fillOval(this.x - 16, this.y - 8, 32, 16);
