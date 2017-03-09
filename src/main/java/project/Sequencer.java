@@ -9,10 +9,12 @@ public class Sequencer {
 	public Sequencer(Controler p_c){// constructeur de la classe sequencer 
 		this.controleur = p_c;// enlever le controleur et mettre la liste de windowGame
 	}
+
 	public void decomposition(Controler p_c, Graphics p_g){// affiche les controleurs selectionner
+
 		String toReturn = "";
-		for(int i=0; i<p_c.listControl.size(); i++){
-			switch (p_c.listControl.get(i)){
+		for(int i=0; i<this.controleur.listControl.size(); i++){
+			switch (this.controleur.listControl.get(i)){
 				case haut :
 					toReturn+="haut ";
 				break;
@@ -31,10 +33,8 @@ public class Sequencer {
 			}
 		}
 		p_g.drawString(toReturn, 510, 250);
-		moveCount = p_c.listControl.size();
+		moveCount = this.controleur.listControl.size();
 	}
-	
-	
 	
 	public int getMoveCount() {
 		return moveCount;
