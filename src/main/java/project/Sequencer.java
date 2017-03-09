@@ -35,7 +35,6 @@ public class Sequencer {
 	}
 	
 	
-	
 	public int getMoveCount() {
 		return moveCount;
 	}
