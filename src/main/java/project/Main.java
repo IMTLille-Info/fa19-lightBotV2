@@ -13,8 +13,7 @@ public class Main {
     /**
      * @param args
      */
-	private String[] args;
-	public Main() throws SlickException {
-		WindowGame.main(args);
+	public static void main (String[] args) throws SlickException{
+		WindowGame.main(args);	// appel de la méthode main de windowGame 
 	}
 }

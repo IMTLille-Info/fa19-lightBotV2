@@ -6,10 +6,10 @@ public class Sequencer {
 	private Controler controleur;
 	private int moveCount = 0;
 	
-	public Sequencer(Controler p_c){
-		this.controleur = p_c;
+	public Sequencer(Controler p_c){// constructeur de la classe sequencer 
+		this.controleur = p_c;// enlever le controleur et mettre la liste de windowGame
 	}
-	public void decomposition(Controler p_c, Graphics p_g){ //this.controleur
+	public void decomposition(Controler p_c, Graphics p_g){// affiche les controleurs selectionner
 		String toReturn = "";
 		for(int i=0; i<p_c.listControl.size(); i++){
 			switch (p_c.listControl.get(i)){

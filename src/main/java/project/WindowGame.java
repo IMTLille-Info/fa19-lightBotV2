@@ -23,25 +23,24 @@ import org.newdawn.slick.tiled.TiledMap;
  *
  * @author ZMNF8866
  */
-public class WindowGame extends BasicGame {
+public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	
 	private GameContainer container;
-	protected TiledMap tiledmap;
-	
-	protected Maps map;
+	protected TiledMap tiledmap;// a supprimer si tu enlever dasn les parametre de la classe map 
+	protected Maps map;// pareil que au dessus
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
 	protected Sequencer sq;
 	protected String str="";
 	private boolean bool=false;
-	protected float x = 50, y = 50+(5*32)+(16);
-	protected int direction=3;
-	protected boolean moving=false;
+	protected float x = 50, y = 50+(5*32)+(16);// position  du personnage 
+	protected int direction=3;// direction du personnage
+	protected boolean moving=false;// deplacement ou pas 
 	public enum ControleurPerso {haut,gauche,droite,bas,vide;}
-	public List<ControleurPerso> listControl = new LinkedList<ControleurPerso>();
+	public List<ControleurPerso> listControl = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
 	
 	
-	public WindowGame() {
+	public WindowGame() {// constructeur de la classe creation des objet de "chaque" classe 
 		super("test 1 :: lighbot");
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
@@ -50,7 +49,7 @@ public class WindowGame extends BasicGame {
 	}
 
 	
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g) throws SlickException {// boucle automatique
 //contenu du jeux
 		this.map.render();
 		this.controleur.render(g);
@@ -92,9 +91,9 @@ public class WindowGame extends BasicGame {
 	        }
 	    }*/
 
-if(this.bool){
-if(this.x> 50+48 ){
-	this.direction=0;
+if(this.bool){//  debut du perso a 50px
+if(this.x> 50+48 ){// une tuile = 32px + une demi tuile =16px 
+	this.direction=0;// changement de la direction
 	if(this.y<(50+(5*32)+(16)-32)){
 		this.direction=3;
 		if(this.x>50+48+64){
@@ -126,12 +125,12 @@ else{
 
 }
 	public static void main(String[] args) throws SlickException {
-        new AppGameContainer(new WindowGame(), 900, 680, false).start();
+        new AppGameContainer(new WindowGame(), 900, 680, false).start();// debut du programme 900/680 dimmention de la fenetre
     }
 
 	
 	@Override
-	public void keyPressed(int key, char c) {
+	public void keyPressed(int key, char c) {// a metre dans input 
 	    switch (key) {
 	        case Input.KEY_UP:    this.direction = 0; this.moving = true; break;
 	        case Input.KEY_LEFT:  this.direction = 1; this.moving = true; break;
@@ -141,7 +140,7 @@ else{
 	}
 	
 	@Override
-	public void keyReleased(int key, char c) {
+	public void keyReleased(int key, char c) {// pareil input
 	        if (Input.KEY_ESCAPE == key) {
 	            container.exit();
 	        }
@@ -150,7 +149,7 @@ else{
 	    }
 	
 	@Override
-	public void mousePressed(int button, int x, int y) {
+	public void mousePressed(int button, int x, int y) {// pareil input
 		switch (button) {
 		//case Input.isMouseButtonDown(button): 
 		case Input.MOUSE_LEFT_BUTTON:
@@ -181,12 +180,12 @@ else{
 	}
 	}
 	@Override
-	public void mouseReleased(int button, int x, int y) {
+	public void mouseReleased(int button, int x, int y) {// pareil input
 		 //this.str="";
 		liste();
 	}
 	
-public void liste(){
+public void liste(){// juste pour les test
 		
 		//this.str=""+listControleurClickUtilisateur.get(listControleurClickUtilisateur.size()-1);
 		this.str="";
