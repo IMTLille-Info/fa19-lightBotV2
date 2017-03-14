@@ -15,12 +15,12 @@ import project.WindowGame.ControleurPerso;
  *
  */
 public class Controler {// la classe controleur gere les boutons des actions du personnage
-	protected List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();
+	protected List<ControleurPerso> listControleur= new LinkedList<ControleurPerso>();
 	 private int translation=0,start=0;
 		
 	 
 	public Controler(List<ControleurPerso> p_listControl) {// constructeur de la classe controleur
-		this.listControl=p_listControl;
+		this.listControleur=p_listControl;
 	}
 
 	public void render(Graphics p_g) {// methode qui met a jours le contenu du jeux 
@@ -65,6 +65,6 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 	}	
 	
 	public void add(ControleurPerso p_control) {//  methode pour inserer les valeur dans la liste 
-			  this.listControl.add(p_control);
+			  this.listControleur.add(p_control);
 	}
 }

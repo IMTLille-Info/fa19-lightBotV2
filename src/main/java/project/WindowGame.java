@@ -37,36 +37,40 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	protected int direction=3;// direction du personnage
 	protected boolean moving=false;// deplacement ou pas 
 	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
-	protected List<ControleurPerso> listControl = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
+	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
 	
 	
 	public WindowGame() {// constructeur de la classe creation des objet de "chaque" classe 
 		super("test 1 :: lighbot");
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
-		 this.controleur=new Controler(this.listControl);
+		 this.controleur=new Controler(this.listControler);
 		 this.sq = new Sequencer(controleur);
 	}
 
 	
-	public void render(GameContainer container, Graphics g) throws SlickException {// boucle automatique
+	public void render(GameContainer container, Graphics p_g) throws SlickException {// boucle automatique
 //contenu du jeux
 		this.map.render();
-		this.controleur.render(g);
-		this.sq.decomposition(controleur,g);
-		g.setBackground(new Color( 204,204 ,255 ));
-		 g.setColor(new Color(0, 0, 0, .5f));
-		  g.fillOval(this.x - 16, this.y - 8, 32, 16);
-		   g.drawAnimation(this.robot.animations[this.direction + (this.moving ? 4 : 0)], this.x-32, this.y-60);
-		   g.drawString( this.str , 0, 0);
-		   g.drawLine( 0, 400, 500, 400);
-		   g.drawLine( 500, 0, 500, 400);
+		this.controleur.render(p_g);
+		this.sq.decomposition(p_g);
+		p_g.setBackground(new Color( 204,204 ,255 ));
+		 p_g.setColor(new Color(0, 0, 0, .5f));
+		  p_g.fillOval(this.x - 16, this.y - 8, 32, 16);
+		   p_g.drawAnimation(this.robot.animations[this.direction + (this.moving ? 4 : 0)], this.x-32, this.y-60);
+		   p_g.drawString( this.str , 0, 0);
+		   p_g.drawLine( 0, 400, 500, 400);
+		   p_g.drawLine( 500, 0, 500, 400);
 		   //g.drawString( "controleur" , 200, 500);
-		   g.drawString( "sequence" , 600, 200);
-		   g.setColor(new Color( 0,255 ,0 ));
-		   g.fillRect(400, 300, 100, 100);
-		   g.setColor(new Color( 0,0,0 ));
-		   g.drawString( "GO" , 440, 350);
+		   p_g.drawString( "sequence" , 600, 200);
+		   p_g.setColor(new Color( 0,255 ,0 ));
+		   p_g.fillRect(400, 300, 100, 100);
+		   p_g.setColor(new Color( 0,0,0 ));
+		   p_g.drawString( "GO" , 440, 350);
+		   p_g.setColor(new Color( 0,255 ,0 ));
+		   p_g.fillRect(290, 300, 100, 100);
+		   p_g.setColor(new Color( 0,0,0 ));
+		   p_g.drawString( "Auto" , 330, 350);
 	}
 
 	@Override
@@ -188,8 +192,8 @@ public void liste(){// juste pour les test
 		
 		//this.str=""+listControleurClickUtilisateur.get(listControleurClickUtilisateur.size()-1);
 		this.str="";
-		for(int i=0;i<=this.listControl.size()-1;i++){
-			this.str=this.str+this.listControl.get(i)+", ";
+		for(int i=0;i<=this.listControler.size()-1;i++){
+			this.str=this.str+this.listControler.get(i)+", ";
 		}
 	}
 	}
