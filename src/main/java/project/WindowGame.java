@@ -31,21 +31,20 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
 	protected Sequencer sq;
-	protected String str="";
+	private String str="";
 	private boolean bool=false;
 	protected float x = 50, y = 50+(5*32)+(16);// position  du personnage 
 	protected int direction=3;// direction du personnage
 	protected boolean moving=false;// deplacement ou pas 
-	public enum ControleurPerso {haut,gauche,droite,bas,vide;}
-	public ControleurPerso control;
-	public List<ControleurPerso> listControl = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
+	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
+	protected List<ControleurPerso> listControl = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
 	
 	
 	public WindowGame() {// constructeur de la classe creation des objet de "chaque" classe 
 		super("test 1 :: lighbot");
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
-		 this.controleur=new Controler(this.listControl, this.control);
+		 this.controleur=new Controler(this.listControl);
 		 this.sq = new Sequencer(controleur);
 	}
 
@@ -76,7 +75,6 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		this.container = container;
 		this.map.init();
 		this.robot.init();
-		this.controleur.init();
 	}
 
 	@Override
@@ -190,8 +188,8 @@ public void liste(){// juste pour les test
 		
 		//this.str=""+listControleurClickUtilisateur.get(listControleurClickUtilisateur.size()-1);
 		this.str="";
-		for(int i=0;i<=this.controleur.listControl.size()-1;i++){
-			this.str=this.str+this.controleur.listControl.get(i)+", ";
+		for(int i=0;i<=this.listControl.size()-1;i++){
+			this.str=this.str+this.listControl.get(i)+", ";
 		}
 	}
 	}

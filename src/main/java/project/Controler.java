@@ -5,10 +5,8 @@ package project;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 import project.WindowGame.ControleurPerso;
 
@@ -17,26 +15,20 @@ import project.WindowGame.ControleurPerso;
  *
  */
 public class Controler {// la classe controleur gere les boutons des actions du personnage
-	public List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();
-	 public int translation=0,start=0;
-	private ControleurPerso controleurP;	
+	protected List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();
+	 private int translation=0,start=0;
+		
 	 
-	public Controler(List<ControleurPerso> p_listControl, ControleurPerso p_control ) {// constructeur de la classe controleur
+	public Controler(List<ControleurPerso> p_listControl) {// constructeur de la classe controleur
 		this.listControl=p_listControl;
-		this.controleurP=p_control;
-		this.add(controleurP.vide);
 	}
 
 	public void render(Graphics p_g) {// methode qui met a jours le contenu du jeux 
 		//this.controleur.render(50, 550);
-		createControl(p_g,controleurP.haut);// appel de la methode de creation pour le controleur haut
-		createControl(p_g,controleurP.gauche);
-		createControl(p_g,controleurP.droite);
-		createControl(p_g,controleurP.bas);	
-	}
-
-	public void init() throws SlickException {
-	//si rien enlever
+		createControl(p_g,ControleurPerso.haut);// appel de la methode de creation pour le controleur haut
+		createControl(p_g,ControleurPerso.gauche);
+		createControl(p_g,ControleurPerso.droite);
+		createControl(p_g,ControleurPerso.bas);	
 	}
 	
 	public void createControl(Graphics p_g, ControleurPerso p_control){// methode qui place sur l'affichage les controleurs
@@ -73,25 +65,6 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 	}	
 	
 	public void add(ControleurPerso p_control) {//  methode pour inserer les valeur dans la liste 
-		switch (p_control)
-		{
-		  case vide:
-			  listControl.add(controleurP.vide);
-		    break;
-		  case haut:
-			  listControl.add(controleurP.haut);// insere le controle haut dans la liste
-		    break;
-		  case gauche:
-			  listControl.add(controleurP.gauche);
-		    break;
-		  case droite:
-			  listControl.add(controleurP.droite);
-			break;
-		  case bas:
-			  listControl.add(controleurP.bas);
-			 break;
-		  default:
-			  listControl.add(controleurP.vide);
-		}
+			  this.listControl.add(p_control);
 	}
 }
