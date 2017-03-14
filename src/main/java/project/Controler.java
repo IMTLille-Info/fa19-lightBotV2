@@ -17,20 +17,22 @@ import project.WindowGame.ControleurPerso;
  *
  */
 public class Controler {// la classe controleur gere les boutons des actions du personnage
-	public List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();;
-	 public int translation=0,start=0;	
-	
-	public Controler(List<ControleurPerso> p_listControl) {// constructeur de la classe controleur
+	public List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();
+	 public int translation=0,start=0;
+	private ControleurPerso controleurP;	
+	 
+	public Controler(List<ControleurPerso> p_listControl, ControleurPerso p_control ) {// constructeur de la classe controleur
 		this.listControl=p_listControl;
-		this.add(ControleurPerso.vide);// met la valeur vide en premiere valeur de la liste 
+		this.controleurP=p_control;
+		this.add(controleurP.vide);
 	}
 
 	public void render(Graphics p_g) {// methode qui met a jours le contenu du jeux 
 		//this.controleur.render(50, 550);
-		createControl(p_g,ControleurPerso.haut);// appel de la methode de creation pour le controleur haut
-		createControl(p_g,ControleurPerso.gauche);
-		createControl(p_g,ControleurPerso.droite);
-		createControl(p_g,ControleurPerso.bas);	
+		createControl(p_g,controleurP.haut);// appel de la methode de creation pour le controleur haut
+		createControl(p_g,controleurP.gauche);
+		createControl(p_g,controleurP.droite);
+		createControl(p_g,controleurP.bas);	
 	}
 
 	public void init() throws SlickException {
@@ -74,22 +76,22 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 		switch (p_control)
 		{
 		  case vide:
-			  listControl.add(ControleurPerso.vide);
+			  listControl.add(controleurP.vide);
 		    break;
 		  case haut:
-			  listControl.add(ControleurPerso.haut);// insere le controle haut dans la liste
+			  listControl.add(controleurP.haut);// insere le controle haut dans la liste
 		    break;
 		  case gauche:
-			  listControl.add(ControleurPerso.gauche);
+			  listControl.add(controleurP.gauche);
 		    break;
 		  case droite:
-			  listControl.add(ControleurPerso.droite);
+			  listControl.add(controleurP.droite);
 			break;
 		  case bas:
-			  listControl.add(ControleurPerso.bas);
+			  listControl.add(controleurP.bas);
 			 break;
 		  default:
-			  listControl.add(ControleurPerso.vide);
+			  listControl.add(controleurP.vide);
 		}
 	}
 }
