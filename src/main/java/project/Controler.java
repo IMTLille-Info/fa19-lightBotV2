@@ -31,6 +31,13 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 		createControl(p_g,ControleurPerso.bas);	
 	}
 	
+	public void clear(){
+		while(this.listControleur.size()!=0){
+		for(int i=0;i<=this.listControleur.size()-1;i++){
+		 this.listControleur.remove(i);
+		}}
+	}
+	
 	public void createControl(Graphics p_g, ControleurPerso p_control){// methode qui place sur l'affichage les controleurs
 		translation=125;start=50;
 		switch (p_control)

@@ -31,13 +31,17 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
 	protected Sequencer sq;
+	protected Information info;
 	private String str="";
 	private boolean bool=false;
-	protected float x = 50, y = 50+(5*32)+(16);// position  du personnage 
+	protected float x = 50+16, y = 50+(5*32)+(16);// position  du personnage 
 	protected int direction=3;// direction du personnage
 	protected boolean moving=false;// deplacement ou pas 
 	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
 	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
+	protected int niveau=1;
+	public float nbx = this.x;
+	public float nby = this.y;
 	
 	
 	public WindowGame() {// constructeur de la classe creation des objet de "chaque" classe 
@@ -46,6 +50,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
 		 this.controleur=new Controler(this.listControler);
 		 this.sq = new Sequencer(controleur);
+		 this.info= new Information(niveau,this.listControler);
 	}
 
 	
@@ -54,13 +59,15 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		this.map.render();
 		this.controleur.render(p_g);
 		this.sq.decomposition(p_g);
+		this.info.render(p_g);
 		p_g.setBackground(new Color( 204,204 ,255 ));
 		 p_g.setColor(new Color(0, 0, 0, .5f));
 		  p_g.fillOval(this.x - 16, this.y - 8, 32, 16);
 		   p_g.drawAnimation(this.robot.animations[this.direction + (this.moving ? 4 : 0)], this.x-32, this.y-60);
 		   p_g.drawString( this.str , 0, 0);
-		   p_g.drawLine( 0, 400, 500, 400);
+		   p_g.drawLine( 0, 400, 550, 400);
 		   p_g.drawLine( 500, 0, 500, 400);
+		   p_g.drawLine( 550, 400, 550, 680);
 		   //g.drawString( "controleur" , 200, 500);
 		   p_g.drawString( "sequence" , 600, 200);
 		   p_g.setColor(new Color( 0,255 ,0 ));
@@ -83,50 +90,31 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-//mise a jour des éléments
-		//str=""+delta;
-		/*if (this.moving) {
-	        switch (this.direction) {
-	            case 0: this.y -= 0.1f * delta; break; // mettre des limite pour ne pas sortir de la map
-	            case 1: this.x -= 0.1f * delta; break;
-	            case 2: this.y += 0.1f * delta; break;
-	            case 3: this.x += 0.1f * delta; break;
-	        }
-	    }*/
-
-if(this.bool){//  debut du perso a 50px
-if(this.x> 50+48 ){// une tuile = 32px + une demi tuile =16px 
-	this.direction=0;// changement de la direction
-	if(this.y<(50+(5*32)+(16)-32)){
-		this.direction=3;
-		if(this.x>50+48+64){
-			this.direction=0;
-			if(this.y<(50+(5*32)+(16)-32)-96){
-				this.direction=3;
-				if(this.x>50+48+64+96){
-					this.moving=false;
-				}
-				else{
-					this.x += 0.1f * delta;
+		
+			//if(this.x<nbx+32){this.direction = 3; this.x += 0.1f *delta; nbx = this.x;nby = this.y;}else{this.controleur.listControleur.remove(0); }
+		if (this.moving) {
+			
+			try{
+				System.out.println(this.controleur.listControleur.get(0));
+				switch (this.controleur.listControleur.get(0)) {
+			    	case haut : if(this.y>nby-32){this.direction = 0; this.y -= 0.1f * delta;}
+			    				else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break; 
+			    	case bas: if(this.y<nby+32){this.direction = 1; this.y += 0.1f * delta;}
+			    			  else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
+			    	case gauche: if(this.x>nby-32){this.direction = 2; this.x -= 0.1f * delta;}
+			    				 else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
+			    	case droite: if(this.x<nbx+32){this.direction = 3; this.x += 0.1f *delta;}
+			    				 else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
+			    	default:
+			    		
+			    	break;
 				}
 			}
-			else{
-				this.y -= 0.1f * delta;
+			catch(java.lang.IndexOutOfBoundsException e){this.moving=false;System.out.println("Fin de Sequence");}
 			}
-		}
-		else{
-			this.x += 0.1f * delta;
-		}
-	}
-	else{
-		this.y -= 0.1f * delta;
-	}	
 }
-else{
-	this.x += 0.1f * delta;
-}}
 
-}
+
 	public static void main(String[] args) throws SlickException {
         new AppGameContainer(new WindowGame(), 900, 680, false).start();// debut du programme 900/680 dimmention de la fenetre
     }
@@ -157,7 +145,7 @@ else{
 		//case Input.isMouseButtonDown(button): 
 		case Input.MOUSE_LEFT_BUTTON:
 			if(400<x && x<500 && 300<y && y<400) {// bouton GO
-				this.x = 50; this.y = 50+(5*32)+(16); this.moving=true; this.bool=true;
+				this.x = 50; this.y = 50+(5*32)+(16); this.moving=true; this.bool=true; 
 				} 
 			if(y>486 && y<582){// (550 -64) +96
 				if(x>50 && x <146){
@@ -186,7 +174,8 @@ else{
 	public void mouseReleased(int button, int x, int y) {// pareil input
 		 //this.str="";
 		liste();
-	}
+	}	
+	
 	
 public void liste(){// juste pour les test
 		
