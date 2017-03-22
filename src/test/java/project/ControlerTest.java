@@ -17,24 +17,22 @@ import project.WindowGame.ControleurPerso;
  * @author ZMNF8866
  *
  */
-private static Properties prop;  // les propriétés
-private static FileInputStream propFile;  //le fichier de propriétés
+//private static Properties prop;  // les propriétés
+//private static FileInputStream propFile;  //le fichier de propriétés
 public class ControlerTest {
 	public List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();
-	expectedSize = ControleurPerso.parseInt(prop.getProperty("taille"));
-    @Test
-    public void testadd() {
-    	assertEquals(expectedSize, listControl.size());
-    	listControl.add(ControleurPerso.haut);
-    	assertEquals(expectedSize+1, listControl.size());
-    	 assertThat(Month.valueOf("January"), is(notNullValue()));
-    	 List<String> e = mapperFactory.getMapperFacade().mapAsList(Arrays.asList(E.a, E.b, E.c), String.class);
-         
-         Assert.assertEquals(Arrays.asList("a", "b", "c"), e);
-    	
+	protected Controler controleur;
 
-	
-	//fail("Not yet implemented");
+	@Test
+    public void testadd() {
+	/*    Controler(listControl);
+	    //assertEquals(controleur.clear(), this.listControl==null);
+	    assertNull(this.controleur);
+	    //controleur.clear();
+	    
+	    */
+
     }
+
 
 }
