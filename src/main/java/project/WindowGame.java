@@ -26,7 +26,7 @@ import org.newdawn.slick.tiled.TiledMap;
 public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	
 	private GameContainer container;
-	protected TiledMap tiledmap;// a supprimer si tu enlever dasn les parametre de la classe map 
+	protected TiledMap tiledmap;// a supprimer si tu enleve dans les parametres de la classe map 
 	protected Maps map;// pareil que au dessus
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
@@ -38,13 +38,13 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	protected int direction=3;// direction du personnage
 	protected boolean moving=false;// deplacement ou pas 
 	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
-	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacement a effectuer
+	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacements a effectuer
 	protected int niveau=1;
 	public float nbx = this.x;
 	public float nby = this.y;
 	
 	
-	public WindowGame() {// constructeur de la classe creation des objet de "chaque" classe 
+	public WindowGame() {// constructeur de la classe instanciation des objets de chaque classe 
 		super("test 1 :: lighbot");
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
@@ -55,7 +55,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 
 	
 	public void render(GameContainer container, Graphics p_g) throws SlickException {// boucle automatique
-//contenu du jeux
+		//contenu du jeu
 		this.map.render();
 		this.controleur.render(p_g);
 		this.sq.decomposition(p_g);
@@ -82,7 +82,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 
 	@Override
 	public void init(GameContainer container) throws SlickException {
-//initialisation
+		//initialisation
 		this.container = container;
 		this.map.init();
 		this.robot.init();
@@ -116,12 +116,12 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 
 
 	public static void main(String[] args) throws SlickException {
-        new AppGameContainer(new WindowGame(), 900, 680, false).start();// debut du programme 900/680 dimmention de la fenetre
+        new AppGameContainer(new WindowGame(), 900, 680, false).start();// debut du programme 900/680 dimension de la fenetre
     }
 
 	
 	@Override
-	public void keyPressed(int key, char c) {// a metre dans input 
+	public void keyPressed(int key, char c) {
 	    switch (key) {
 	        case Input.KEY_UP:    this.direction = 0; this.moving = true; break;
 	        case Input.KEY_LEFT:  this.direction = 1; this.moving = true; break;
@@ -131,7 +131,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	}
 	
 	@Override
-	public void keyReleased(int key, char c) {// pareil input
+	public void keyReleased(int key, char c) {
 	        if (Input.KEY_ESCAPE == key) {
 	            container.exit();
 	        }
@@ -140,7 +140,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	    }
 	
 	@Override
-	public void mousePressed(int button, int x, int y) {// pareil input
+	public void mousePressed(int button, int x, int y) {
 		switch (button) {
 		//case Input.isMouseButtonDown(button): 
 		case Input.MOUSE_LEFT_BUTTON:
@@ -171,13 +171,13 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	}
 	}
 	@Override
-	public void mouseReleased(int button, int x, int y) {// pareil input
+	public void mouseReleased(int button, int x, int y) {
 		 //this.str="";
 		liste();
 	}	
 	
 	
-public void liste(){// juste pour les test
+	public void liste(){// juste pour les test
 		
 		//this.str=""+listControleurClickUtilisateur.get(listControleurClickUtilisateur.size()-1);
 		this.str="";
@@ -185,6 +185,6 @@ public void liste(){// juste pour les test
 			this.str=this.str+this.listControler.get(i)+", ";
 		}
 	}
-	}
+}
 
 //http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html

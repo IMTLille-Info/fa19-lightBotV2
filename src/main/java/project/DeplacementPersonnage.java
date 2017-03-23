@@ -15,7 +15,7 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 		protected Animation[] animations = new Animation[8];
 		private float x;
 		private float y;
-		private boolean moving;//  est le boolean "false" le personnage est static "true" le personnage "bouge"
+		private boolean moving;//  est a "false" si le personnage est immobile et a "true" lorsque le personnage bouge
 		private int direction;// gere la direction du personnage
 
 		public DeplacementPersonnage(float p_x, float p_y, int p_direction, boolean p_moving) {// constructeur de la classe
@@ -27,7 +27,7 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 
 		public void init() throws SlickException {// initialisation des sprites 
 			SpriteSheet spriteSheet = new SpriteSheet("src/main/resources/sprites/c.png", 64, 64);
-			this.animations[0] = loadAnimation(spriteSheet, 0, 1, 0);// appel la methode pour charger les sprites
+			this.animations[0] = loadAnimation(spriteSheet, 0, 1, 0);// appel de la methode pour charger les sprites
 		    this.animations[1] = loadAnimation(spriteSheet, 0, 1, 1);
 		    this.animations[2] = loadAnimation(spriteSheet, 0, 1, 2);
 		    this.animations[3] = loadAnimation(spriteSheet, 0, 1, 3);

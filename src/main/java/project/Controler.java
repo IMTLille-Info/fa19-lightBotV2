@@ -23,12 +23,12 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 		this.listControleur=p_listControl;
 	}
 
-	public void render(Graphics p_g) {// methode qui met a jours le contenu du jeux 
+	public void render(Graphics p_g) {// methode qui met a jour le contenu du jeu
 		//this.controleur.render(50, 550);
 		createControl(p_g,ControleurPerso.haut);// appel de la methode de creation pour le controleur haut
 		createControl(p_g,ControleurPerso.gauche);
 		createControl(p_g,ControleurPerso.droite);
-		createControl(p_g,ControleurPerso.bas);	
+		createControl(p_g,ControleurPerso.bas);
 	}
 	
 	public void clear(){

@@ -34,11 +34,11 @@ public class Maps extends WindowGame {// classe qui gere les maps
 	    this.map=map;
 	}
 	
-	public void render() {/// contenu du jeux
+	public void render() {/// contenu du jeu
 		this.map.render(50, 50);// place la map a 50x et 50y
 	}
 
-	public void init() throws SlickException {//initalise la 1er map 
+	public void init() throws SlickException {//initalise la premiere map 
 		this.map = new TiledMap("src/main/resources/map/lvl.tmx");
 	}
 	

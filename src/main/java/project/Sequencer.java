@@ -10,7 +10,7 @@ public class Sequencer {
 		this.controleur = p_c;// enlever le controleur et mettre la liste de windowGame
 	}
 
-	public void decomposition(Graphics p_g){// affiche les controleurs selectionnés
+	public void decomposition(Graphics p_g){// affiche les controleurs selectionnes
 
 		String toReturn = "";
 		for(int i=0; i<this.controleur.listControleur.size(); i++){
