@@ -20,7 +20,15 @@ public class Information {
 		this.listControleurinfo=p_listControl;
 	}
 	
-	
+	/*
+	 * Nom de la méthode : render
+	 * Parametres en entree :Graphics p_g
+	 *  - nom_variable : p_g est pour insérer les éléments graphique
+	 * Objectif de la méthode :
+	 * methode qui met a jours le contenu du jeux pour la parti information
+	 * Algorithme ou pseudo code :
+	 * Debut
+	*/
 	public void render(Graphics p_g) {// methode qui met a jours le contenu du jeux 
 		   p_g.setColor(new Color( 0,0,0 ));
 		   p_g.drawString( "Information" ,  650, 400);
@@ -31,8 +39,18 @@ public class Information {
 		   else{
 			   p_g.drawString( "nombre de déplacement restant : "+nombrelist() ,  550, 440);
 		   }
-		  
 	}
+	 /* Fin */
+	
+	/*
+	 * Nom de la méthode : nombrelist
+	 * Parametres en entree : N/A
+	 * Valeur retournée : int this.compteurList retour le nombre de controleur possible  moins 
+	 * le nombre de controleurs dans la liste. 
+	 * Objectif de la méthode :
+	 * retouner la différence enle le nombre de déplacement posible pour la map et le nombre de contoleurs
+	 * Algorithme ou pseudo code :
+	 * Debut */
 	private int nombrelist() {
 		this.compteurList=0;
 		for(int i=0;i<=this.listControleurinfo.size()-1;i++){
@@ -49,4 +67,5 @@ public class Information {
 		}
 		return this.compteurList;
 	}
+	/* Fin */
 }

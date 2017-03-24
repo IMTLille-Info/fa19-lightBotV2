@@ -53,7 +53,14 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		 this.info= new Information(niveau,this.listControler);
 	}
 
-	
+	/*
+	 * Nom de la méthode : render
+	 * Parametres en entree : Graphics p_g
+	 *  - nom_variable : p_g est pour insérer les éléments graphique
+	 * Objectif de la méthode :
+	 * ajouter des éléments dans le jeux
+	 * Algorithme ou pseudo code :
+	 * Debut */
 	public void render(GameContainer container, Graphics p_g) throws SlickException {// boucle automatique
 		//contenu du jeu
 		this.map.render();
@@ -79,7 +86,13 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		   p_g.setColor(new Color( 0,0,0 ));
 		   p_g.drawString( "Auto" , 330, 350);
 	}
-
+	/* Fin */
+	/*
+	 * Nom de la méthode : init
+	 * Objectif de la méthode :
+	 * initialiser les classes
+	 * Algorithme ou pseudo code :
+	 * Debut */
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		//initialisation
@@ -87,11 +100,17 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		this.map.init();
 		this.robot.init();
 	}
-
+	/* Fin */
+	/*
+	 * Nom de la méthode : update
+	 * Parametres en entree : int delta
+	 *  - nom_variable : delta est le delta entre deux appels
+	 * Objectif de la méthode :
+	 * mise à jours des élément 
+	 * Algorithme ou pseudo code :
+	 * Debut */
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		
-			//if(this.x<nbx+32){this.direction = 3; this.x += 0.1f *delta; nbx = this.x;nby = this.y;}else{this.controleur.listControleur.remove(0); }
 		if (this.moving) {
 			
 			try{
@@ -113,12 +132,17 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 			catch(java.lang.IndexOutOfBoundsException e){this.moving=false;System.out.println("Fin de Sequence");}
 			}
 }
-
-
+	/* Fin */
+	/*
+	 * Nom de la méthode : main
+	 * Objectif de la méthode :
+	 * lance le programme avec la fenetre
+	 * Algorithme ou pseudo code :
+	 * Debut */
 	public static void main(String[] args) throws SlickException {
         new AppGameContainer(new WindowGame(), 900, 680, false).start();// debut du programme 900/680 dimension de la fenetre
     }
-
+	/* Fin */
 	
 	@Override
 	public void keyPressed(int key, char c) {
@@ -175,7 +199,6 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		 //this.str="";
 		liste();
 	}	
-	
 	
 	public void liste(){// juste pour les test
 		
