@@ -26,8 +26,8 @@ import org.newdawn.slick.tiled.TiledMap;
 public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	
 	private GameContainer container;
-	protected TiledMap tiledmap;// a supprimer si tu enleve dans les parametres de la classe map 
-	protected Maps map;// pareil que au dessus
+	protected TiledMap tiledmap;
+	protected Maps map;
 	protected DeplacementPersonnage robot;
 	protected Controler controleur;
 	protected Sequencer sq;
@@ -36,9 +36,9 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	private boolean bool=false;
 	protected float x = 50+16, y = 50+(5*32)+(16);// position  du personnage 
 	protected int direction=3;// direction du personnage
-	protected boolean moving=false;// deplacement ou pas 
+	protected boolean moving=false;// déplacement du personnage
 	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
-	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacements a effectuer
+	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacements à effectuer
 	protected int niveau=1;
 	public float nbx = this.x;
 	public float nby = this.y;
@@ -56,12 +56,12 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	/*
 	 * Nom de la méthode : render
 	 * Parametres en entree : Graphics p_g
-	 *  - nom_variable : p_g est pour insérer les éléments graphique
+	 *  - nom_variable : p_g est pour insérer les éléments graphiques
 	 * Objectif de la méthode :
-	 * ajouter des éléments dans le jeux
+	 * Ajouter des éléments dans le jeu
 	 * Algorithme ou pseudo code :
 	 * Debut */
-	public void render(GameContainer container, Graphics p_g) throws SlickException {// boucle automatique
+	public void render(GameContainer container, Graphics p_g) throws SlickException {
 		//contenu du jeu
 		this.map.render();
 		this.controleur.render(p_g);
@@ -90,7 +90,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	/*
 	 * Nom de la méthode : init
 	 * Objectif de la méthode :
-	 * initialiser les classes
+	 * Initialiser les classes
 	 * Algorithme ou pseudo code :
 	 * Debut */
 	@Override
@@ -106,7 +106,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	 * Parametres en entree : int delta
 	 *  - nom_variable : delta est le delta entre deux appels
 	 * Objectif de la méthode :
-	 * mise à jours des élément 
+	 * Mise à jour des éléments 
 	 * Algorithme ou pseudo code :
 	 * Debut */
 	@Override
@@ -136,7 +136,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	/*
 	 * Nom de la méthode : main
 	 * Objectif de la méthode :
-	 * lance le programme avec la fenetre
+	 * Lance le programme avec la fenêtre
 	 * Algorithme ou pseudo code :
 	 * Debut */
 	public static void main(String[] args) throws SlickException {
