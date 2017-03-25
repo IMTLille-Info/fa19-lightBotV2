@@ -113,7 +113,10 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	public void update(GameContainer container, int delta) throws SlickException {
 		if (this.moving) {
 			try{
-				if((this.x<50)||(this.x>256)||(this.y<65)||(this.y>259))this.moving=false;
+				if((this.x<50)||(this.x>256)||(this.y<65)||(this.y>259)){
+					this.moving=false;
+					this.controleur.listControleur.clear();
+				}
 				switch (this.controleur.listControleur.get(0)) {
 			    	case haut : if(this.y>nby-32){this.direction = 0; this.y -= 0.1f * delta;}
 			    				else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break; 
