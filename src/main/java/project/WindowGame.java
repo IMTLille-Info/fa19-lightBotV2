@@ -114,7 +114,9 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		if (this.moving) {
 			
 			try{
+				if((this.x<50)||(this.x>256)||(this.y<65)||(this.y>259))this.moving=false;
 				System.out.println(this.controleur.listControleur.get(0));
+				System.out.println(this.x);
 				switch (this.controleur.listControleur.get(0)) {
 			    	case haut : if(this.y>nby-32){this.direction = 0; this.y -= 0.1f * delta;}
 			    				else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break; 

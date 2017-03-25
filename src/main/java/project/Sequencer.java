@@ -10,6 +10,13 @@ public class Sequencer {
 		this.controleur = p_c;// enlever le controleur et mettre la liste de windowGame
 	}
 
+	private String returnCarriage(String p_s, int nbMove){
+		if((nbMove+1)%6==0){
+			p_s+="\n";
+		}
+		return p_s;		
+	}	
+	
 	public void decomposition(Graphics p_g){// affiche les controleurs selectionnes
 
 		String toReturn = "";
@@ -31,6 +38,7 @@ public class Sequencer {
 					toReturn+="";
 				break;
 			}
+			toReturn = this.returnCarriage(toReturn,i);
 		}
 		p_g.drawString(toReturn, 510, 250);
 		moveCount = this.controleur.listControleur.size();
