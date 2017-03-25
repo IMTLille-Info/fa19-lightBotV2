@@ -112,27 +112,25 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
 		if (this.moving) {
-			
 			try{
 				if((this.x<50)||(this.x>256)||(this.y<65)||(this.y>259))this.moving=false;
-				System.out.println(this.controleur.listControleur.get(0));
-				System.out.println(this.x);
 				switch (this.controleur.listControleur.get(0)) {
 			    	case haut : if(this.y>nby-32){this.direction = 0; this.y -= 0.1f * delta;}
 			    				else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break; 
 			    	case bas: if(this.y<nby+32){this.direction = 1; this.y += 0.1f * delta;}
 			    			  else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
-			    	case gauche: if(this.x>nby-32){this.direction = 2; this.x -= 0.1f * delta;}
+			    	case gauche: if(this.x>nbx-32){this.direction = 2; this.x -= 0.1f * delta;}
 			    				 else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
 			    	case droite: if(this.x<nbx+32){this.direction = 3; this.x += 0.1f *delta;}
 			    				 else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
-			    	default:
-			    		
-			    	break;
 				}
 			}
-			catch(java.lang.IndexOutOfBoundsException e){this.moving=false;System.out.println("Fin de Sequence");}
+			catch(java.lang.IndexOutOfBoundsException e){
+				this.moving=false; 
+				nbx = 50+16; 
+				nby = 50+(5*32)+(16);
 			}
+		}
 }
 	/* Fin */
 	/*
