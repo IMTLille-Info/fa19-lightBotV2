@@ -48,7 +48,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		super("test 1 :: lighbot");
 		 this.map= new Maps(this.tiledmap);
 		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
-		 this.controleur=new Controler(this.listControler);
+		 this.controleur=new Controler(this.listControler,this.niveau);
 		 this.sq = new Sequencer(controleur);
 		 this.info= new Information(niveau,this.listControler);
 	}

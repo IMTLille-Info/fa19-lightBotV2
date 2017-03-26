@@ -16,10 +16,11 @@ import project.WindowGame.ControleurPerso;
  */
 public class Controler {// la classe controleur gere les boutons des actions du personnage
 	protected List<ControleurPerso> listControleur= new LinkedList<ControleurPerso>();
-	 private int translation=0,start=0;
+	 private int translation=0,start=0,niveau=1,compteurList=0;
 		
-	public Controler(List<ControleurPerso> p_listControl) {// constructeur de la classe controleur
+	public Controler(List<ControleurPerso> p_listControl, int p_niveau) {// constructeur de la classe controleur
 		this.listControleur=p_listControl;
+		this.niveau=p_niveau;
 	}
 	/*
 	 * Nom de la méthode : render
@@ -104,7 +105,23 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 	 * Algorithme ou pseudo code :
 	 * Debut*/
 	public void add(ControleurPerso p_control) {//  méthode pour insérer les valeurs dans la liste 
-			  this.listControleur.add(p_control);
+		this.compteurList=0;
+		for(int i=0;i<=this.listControleur.size()-1;i++){
+			this.compteurList++;
+		}
+		switch(this.niveau){
+		case 1:
+			if(this.compteurList!=10){
+				 this.listControleur.add(p_control);
+			}
+			break;
+		case 2 :
+			if(this.compteurList!=15){
+				 this.listControleur.add(p_control);
+			}
+			break;
+		}
+			
 	}
 	/* Fin */
 }

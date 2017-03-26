@@ -58,7 +58,7 @@ public class Information {
 		}
 		switch(this.niveau){
 		case 1 :
-			this.compteurList=12-this.compteurList;
+			this.compteurList=10-this.compteurList;
 			break;
 		case 2:
 			this.compteurList=15-this.compteurList;
