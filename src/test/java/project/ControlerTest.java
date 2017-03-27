@@ -17,22 +17,24 @@ import project.WindowGame.ControleurPerso;
  * @author ZMNF8866
  *
  */
-//private static Properties prop;  // les propriétés
-//private static FileInputStream propFile;  //le fichier de propriétés
+
 public class ControlerTest {
-	public List<ControleurPerso> listControl= new LinkedList<ControleurPerso>();
+	protected List<ControleurPerso> listControleur= new LinkedList<ControleurPerso>();
+ 	private int translation=0,start=0,niveau=1,compteurList=0;
 	protected Controler controleur;
+	private int a;
+	
 
 	@Test
     public void testadd() {
-	/*    Controler(listControl);
-	    //assertEquals(controleur.clear(), this.listControl==null);
-	    assertNull(this.controleur);
-	    //controleur.clear();
-	    
-	    */
-
+		List<ControleurPerso> listControleur= new LinkedList<ControleurPerso>();
+		this.listControleur.clear();
+		a =this.listControleur.size();
+		assertEquals(0, a);
     }
+
+
+
 
 
 }
