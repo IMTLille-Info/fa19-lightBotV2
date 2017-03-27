@@ -64,9 +64,16 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 		 * Mise à jour des éléments 
 		 * Algorithme ou pseudo code :
 		 * Debut */
+		
+		private boolean travelVerification (Controler p_c, Maps p_m){
+			if(p_c.listControleur.get(0)==p_m.listControleurlvl.get(0))
+				return true;
+			return false;
+		}
+		
 		public void update(GameContainer container, int delta) throws SlickException {
 			
-			if (this.moving) {
+			if ((this.moving)&&(travelVerification(this.control,this.map))) {
 				try{
 					switch (this.control.listControleur.get(0)) {
 				    	case haut : if(this.y>nby-32){this.direction = 0; this.y -= 0.1f * delta;}
