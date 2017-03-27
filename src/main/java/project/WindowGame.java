@@ -34,23 +34,19 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	protected Information info;
 	private String str="";
 	private boolean bool=false;
-	protected float x = 50+16, y = 50+(5*32)+(16);// position  du personnage 
-	protected int direction=3;// direction du personnage
-	protected boolean moving=false;// déplacement du personnage
 	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
 	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacements à effectuer
 	protected int niveau=1;
-	public float nbx = this.x;
-	public float nby = this.y;
+
 	
 	
 	public WindowGame() {// constructeur de la classe instanciation des objets de chaque classe 
 		super("test 1 :: lighbot");
-		 this.map= new Maps(this.tiledmap);
-		 this.robot=new DeplacementPersonnage(this.x,this.y,this.direction,this.moving);
 		 this.controleur=new Controler(this.listControler,this.niveau);
+		 this.map= new Maps(this.tiledmap,this.niveau);
+		 this.robot=new DeplacementPersonnage(this.map,controleur);
 		 this.sq = new Sequencer(controleur);
-		 this.info= new Information(niveau,this.listControler);
+		 this.info= new Information(this.niveau,this.listControler);
 	}
 
 	/*
@@ -67,10 +63,9 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		this.controleur.render(p_g);
 		this.sq.decomposition(p_g);
 		this.info.render(p_g);
+		this.robot.render(p_g);
 		p_g.setBackground(new Color( 204,204 ,255 ));
 		 p_g.setColor(new Color(0, 0, 0, .5f));
-		  p_g.fillOval(this.x - 16, this.y - 8, 32, 16);
-		   p_g.drawAnimation(this.robot.animations[this.direction + (this.moving ? 4 : 0)], this.x-32, this.y-60);
 		   p_g.drawString( this.str , 0, 0);
 		   p_g.drawLine( 0, 400, 550, 400);
 		   p_g.drawLine( 500, 0, 500, 400);
@@ -85,6 +80,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		   p_g.fillRect(290, 300, 100, 100);
 		   p_g.setColor(new Color( 0,0,0 ));
 		   p_g.drawString( "Auto" , 330, 350);
+		   
 	}
 	/* Fin */
 	/*
@@ -111,30 +107,9 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	 * Debut */
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		if (this.moving) {
-			try{
-				if((this.x<50)||(this.x>256)||(this.y<65)||(this.y>259)){
-					this.moving=false;
-					this.controleur.listControleur.clear();
-				}
-				switch (this.controleur.listControleur.get(0)) {
-			    	case haut : if(this.y>nby-32){this.direction = 0; this.y -= 0.1f * delta;}
-			    				else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break; 
-			    	case bas: if(this.y<nby+32){this.direction = 1; this.y += 0.1f * delta;}
-			    			  else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
-			    	case gauche: if(this.x>nbx-32){this.direction = 2; this.x -= 0.1f * delta;}
-			    				 else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
-			    	case droite: if(this.x<nbx+32){this.direction = 3; this.x += 0.1f *delta;}
-			    				 else {this.controleur.listControleur.remove(0); nbx = this.x;nby = this.y;} break;
-				}
-			}
-			catch(java.lang.IndexOutOfBoundsException e){
-				this.moving=false; 
-				nbx = 50+16; 
-				nby = 50+(5*32)+(16);
-			}
-		}
-}
+		this.robot.update(container, delta);
+		this.map.updateTrigger(); 
+	}
 	/* Fin */
 	/*
 	 * Nom de la méthode : main
@@ -149,12 +124,12 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	
 	@Override
 	public void keyPressed(int key, char c) {
-	    switch (key) {
+	    /*switch (key) {
 	        case Input.KEY_UP:    this.direction = 0; this.moving = true; break;
 	        case Input.KEY_LEFT:  this.direction = 1; this.moving = true; break;
 	        case Input.KEY_DOWN:  this.direction = 2; this.moving = true; break;
 	        case Input.KEY_RIGHT: this.direction = 3; this.moving = true; break;  
-	    }
+	    }*/
 	}
 	
 	@Override
@@ -162,17 +137,22 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	        if (Input.KEY_ESCAPE == key) {
 	            container.exit();
 	        }
-	        this.moving = false;
+	        this.robot.moving = false;
 	        if (Input.KEY_W == key) {liste();}
 	    }
 	
 	@Override
 	public void mousePressed(int button, int x, int y) {
+		
 		switch (button) {
 		//case Input.isMouseButtonDown(button): 
+		
 		case Input.MOUSE_LEFT_BUTTON:
 			if(400<x && x<500 && 300<y && y<400) {// bouton GO
-				this.x = 50; this.y = 50+(5*32)+(16); this.moving=true; this.bool=true; 
+				//this.robot.x = 50; this.robot.y = 50+(5*32)+(16);
+				System.out.println(this.robot);
+				this.robot.moving=true;// this.bool=true; 
+				
 				} 
 			if(y>486 && y<582){// (550 -64) +96
 				if(x>50 && x <146){
