@@ -21,9 +21,8 @@ public class Maps {// classe qui gere les maps
 	private TiledMap map;
 	protected List<ControleurPerso> listControleurlvl= new LinkedList<ControleurPerso>();
 	protected int niveau=1;
-	private float x;
-	private float y;
-
+	protected DeplacementPersonnage robot;
+	
 	public Maps(TiledMap map, int p_niveau) {// enlever TileMap du constructeur 
         this.map=map;
         this.niveau=p_niveau;
@@ -35,46 +34,10 @@ public class Maps {// classe qui gere les maps
 	}
 
 public void init() throws SlickException {//initalise la première map 
-		//this.map = new TiledMap("src/main/resources/map/lvl.tmx");
+		this.map = new TiledMap("src/main/resources/map/lvl.tmx");
 		addlist();
 }
-void updateTrigger() throws SlickException {
-	   
-    for (int objectID = 0; objectID < this.map.getObjectCount(0); objectID++) {
-        if (isInTrigger(objectID)) {
-            String type = this.map.getObjectType(0, objectID);
-            if ("teleport".equals(type)) {
-                teleport(objectID);
-            } else if ("change-map".equals(type)) {
-                changeMap(objectID);
-            }
-        }
-    }
-}
 
-
-private void teleport(int objectID) {
-	this.x = Float.parseFloat(this.map.getObjectProperty(0, objectID, "dest-x",	Float.toString(x)));
-	this.y = Float.parseFloat(this.map.getObjectProperty(0, objectID, "dest-y",	Float.toString(y)));
-
-}
-
-private void changeMap(int objectID) throws SlickException {
-	teleport(objectID);
-	String newMap = this.map.getObjectProperty(0, objectID, "dest-map", "undefined");
-	if (!"undefined".equals(newMap)) {
-		this.map = new TiledMap("src/main/resources/map/lvl2.tmx" + newMap);
-		//public void clear(List<ControleurPerso> p_listtoclear){
-	}
-}
-
-
-private boolean isInTrigger(int id) {
-	return this.x > this.map.getObjectX(0, id)
-			&& this.x < this.map.getObjectX(0, id) + this.map.getObjectWidth(0, id)
-			&& this.y > this.map.getObjectY(0, id)
-			&& this.y < this.map.getObjectY(0, id) + this.map.getObjectHeight(0, id);
-}
 
 public void clear(){
 	while(this.listControleurlvl.size()!=0){

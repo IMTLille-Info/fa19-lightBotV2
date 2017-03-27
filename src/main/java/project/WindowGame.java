@@ -108,7 +108,6 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
 		this.robot.update(container, delta);
-		this.map.updateTrigger(); 
 	}
 	/* Fin */
 	/*

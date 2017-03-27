@@ -23,9 +23,9 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 		protected Controler control;
 		private float nbx = this.x;
 		private float nby = this.y;
+		private float z;
 	
-		
-		public DeplacementPersonnage(Maps p_m, Controler p_c) {// constructeur de la classe
+				public DeplacementPersonnage(Maps p_m, Controler p_c) {// constructeur de la classe
 			this.map=p_m;
 			this.control=p_c;
 		}
@@ -89,5 +89,17 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 				}
 			}
 	}
+
+		
+		public float getX() {
+			return this.x;
+		}
+		public float getY() {
+			return this.y;
+		}
+		
+
+		
 	}
 
+	
