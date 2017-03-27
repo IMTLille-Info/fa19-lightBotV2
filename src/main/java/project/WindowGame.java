@@ -46,7 +46,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		 this.map= new Maps(this.tiledmap,this.niveau);
 		 this.robot=new DeplacementPersonnage(this.map,controleur);
 		 this.sq = new Sequencer(controleur);
-		 this.info= new Information(this.niveau,this.listControler);
+		 this.info= new Information(this.niveau,this.listControler,this.robot);
 	}
 
 	/*
@@ -72,14 +72,12 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		   p_g.drawLine( 550, 400, 550, 680);
 		   //g.drawString( "controleur" , 200, 500);
 		   p_g.drawString( "sequence" , 600, 200);
-		   p_g.setColor(new Color( 0,255 ,0 ));
-		   p_g.fillRect(400, 300, 100, 100);
-		   p_g.setColor(new Color( 0,0,0 ));
-		   p_g.drawString( "GO" , 440, 350);
+		  
+		   
 		   p_g.setColor(new Color( 0,255 ,0 ));
 		   p_g.fillRect(290, 300, 100, 100);
 		   p_g.setColor(new Color( 0,0,0 ));
-		   p_g.drawString( "Auto" , 330, 350);
+		   p_g.drawString( "Auto" , 322, 350);
 		   
 	}
 	/* Fin */
@@ -149,8 +147,12 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		case Input.MOUSE_LEFT_BUTTON:
 			if(400<x && x<500 && 300<y && y<400) {// bouton GO
 				//this.robot.x = 50; this.robot.y = 50+(5*32)+(16);
-				System.out.println(this.robot);
+				 this.robot.setgameOver(true);
 				this.robot.moving=true;// this.bool=true; 
+				this.map.addlist();
+				this.robot.x = 50+16;
+				this.robot.y = 50+(5*32)+(16);
+				
 				
 				} 
 			if(y>486 && y<582){// (550 -64) +96

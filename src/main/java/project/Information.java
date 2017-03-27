@@ -14,10 +14,12 @@ public class Information {
 	private int niveau;
 	protected List<ControleurPerso> listControleurinfo= new LinkedList<ControleurPerso>();
 	private int compteurList=12;
+	private DeplacementPersonnage perso;
 
-	public Information(int p_niveau,List<ControleurPerso> p_listControl) {
+	public Information(int p_niveau,List<ControleurPerso> p_listControl,DeplacementPersonnage p_perso) {
 		this.niveau=p_niveau;
 		this.listControleurinfo=p_listControl;
+		this.perso=p_perso;
 	}
 	
 	/*
@@ -33,13 +35,30 @@ public class Information {
 		   p_g.setColor(new Color( 0,0,0 ));
 		   p_g.drawString( "Information" ,  650, 400);
 		   p_g.drawString( "level : "+this.niveau ,  550, 420);
+		  
 		   if(nombrelist()<=0){
 			   p_g.drawString( "nombre de déplacement restant : 0" ,  550, 440);
 		   }
 		   else{
 			   p_g.drawString( "nombre de déplacement restant : "+nombrelist() ,  550, 440);
 		   }
+		   if(this.perso.getgameOver()==false){
+			   p_g.setColor(new Color( 204,0 ,0 ));
+			   p_g.fillRect(400, 300, 100, 100);
+			   p_g.setColor(new Color( 0,0,0 ));
+			   p_g.drawString( "Try Again" , 410, 350);
+			   p_g.setColor(new Color( 204,0,0 ));
+			   p_g.drawString( "Try Again" , 125, 146);
+			  
+		   }
+		   else{
+			   p_g.setColor(new Color( 0,255 ,0 ));
+			   p_g.fillRect(400, 300, 100, 100);
+			   p_g.setColor(new Color( 0,0,0 ));
+			   p_g.drawString( "GO" , 440, 350);
+		   }
 	}
+	
 	 /* Fin */
 	
 	/*
