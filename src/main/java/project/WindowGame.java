@@ -37,6 +37,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	protected enum ControleurPerso {haut,gauche,droite,bas,vide;}
 	protected List<ControleurPerso> listControler = new LinkedList<ControleurPerso>();// liste des déplacements à effectuer
 	protected int niveau=1;
+	private int tmplvl=this.niveau;
 
 	
 	
@@ -44,7 +45,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		super("test 1 :: lighbot");
 		 this.controleur=new Controler(this.listControler,this.niveau);
 		 this.map= new Maps(this.tiledmap,this.niveau);
-		 this.robot=new DeplacementPersonnage(this.map,controleur);
+		 this.robot=new DeplacementPersonnage(this.map,controleur,this.niveau);
 		 this.sq = new Sequencer(controleur);
 		 this.info= new Information(this.niveau,this.listControler,this.robot);
 	}
@@ -106,6 +107,8 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
 		this.robot.update(container, delta);
+		this.tmplvl=this.robot.getlvl();
+		if(this.tmplvl!=this.niveau){ this.niveau=this.tmplvl;this.setniveau(this.niveau);}
 	}
 	/* Fin */
 	/*
@@ -182,7 +185,16 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	public void mouseReleased(int button, int x, int y) {
 		 //this.str="";
 		liste();
-	}	
+	}
+	
+	public void setniveau(int p_niveau){
+		this.niveau=p_niveau;
+		if(this.niveau<=3){
+		this.info.setniveau(this.niveau);
+		this.controleur.setniveau(this.niveau);
+		this.map.setniveau(this.niveau);
+		}
+	}
 	
 	public void liste(){// juste pour les test
 		

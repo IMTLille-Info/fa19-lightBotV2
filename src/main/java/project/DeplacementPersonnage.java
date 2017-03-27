@@ -23,10 +23,14 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 		protected Controler control;
 		private float nbx = this.x;
 		private float nby = this.y;
+		private int niveau;
+		private boolean fin=false;
 	
-				public DeplacementPersonnage(Maps p_m, Controler p_c) {// constructeur de la classe
+				public DeplacementPersonnage(Maps p_m, Controler p_c,int p_niveau) {// constructeur de la classe
 			this.map=p_m;
 			this.control=p_c;
+			this.niveau=p_niveau;
+
 		}
 
 		public void init() throws SlickException {// initialisation des sprites 
@@ -107,20 +111,68 @@ public class DeplacementPersonnage {// classe qui gere le deplacement et les spr
 				    				 else {this.control.listControleur.remove(0); nbx = this.x;nby = this.y;this.map.listControleurlvl.remove(0);} break;
 				    	case droite: if(this.x<nbx+32){this.direction = 3; this.x += 0.1f *delta;}
 				    				 else {this.control.listControleur.remove(0); nbx = this.x;nby = this.y;this.map.listControleurlvl.remove(0);} break;
-				    	default :
-				    		
-				    				 
+				    	default :		 
 					}
 				}
 				catch(java.lang.IndexOutOfBoundsException e){
 					this.moving=false; 
-					this.nbx = 50+16; 
-					this.nby = 50+(5*32)+(16);
-					this.control.clear();
+					//this.nbx = 50+16; 
+					//this.nby = 50+(5*32)+(16);
+					//this.control.clear();
 				}
 			}
-	}}
-	
+	}
+			else{
+				this.fin=true;
+				this.changelvl();
+			}
+			
+}
+		public void changelvl(){
+			
+			switch(this.niveau){
+			case 1:
+				if(this.control.listControleur.size()==0){
+					if(this.x>192 && this.y>82){
+						this.niveau++;
+						this.nbx = 50+16; 
+						this.x=50+16; 
+						this.nby = 50+(5*32)+(16);
+						this.y= 50+(5*32)+(16);
+						this.control.clear();
+						this.gameOver=true;
+					}
+				}
+				break;
+			case 2:
+				if(this.control.listControleur.size()==0){
+					if(this.x>192 && this.y>82){
+					if(this.fin==true){
+						this.niveau++;
+						this.nbx = 50+16; 
+						this.x=50+16; 
+						this.nby = 50+(5*32)+(16);
+						this.y= 50+(5*32)+(16);
+						this.control.clear();
+						this.gameOver=true;
+					}}
+				}
+				break;
+			case 3:
+				if(this.control.listControleur.size()==0){
+					if(this.fin==true){
+						if(this.x>192 && this.y>82){
+						System.out.println("lol");
+					}}
+				}
+				break;
+				default:
+			}	
+		}
+		
+		public int getlvl(){
+		return this.niveau;
+		}
 	}
 
 	

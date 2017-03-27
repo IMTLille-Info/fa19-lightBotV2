@@ -31,10 +31,22 @@ public class Maps {// classe qui gere les maps
 	public void render() throws SlickException {/// contenu du jeu
 		this.map.render(50, 50);// place la map a 50x et 50y
 		//this.map = new TiledMap("src/main/resources/map/lvl2.tmx");
+		switch(niveau){
+
+		case 1: 
+			this.map = new TiledMap("src/main/resources/map/lvl.tmx");
+			break;
+		case 2:
+			this.map = new TiledMap("src/main/resources/map/lvl2.tmx");
+			break;
+		case 3:
+			this.map = new TiledMap("src/main/resources/map/lvl3.tmx");
+			break;
+		}
 	}
 
 public void init() throws SlickException {//initalise la première map 
-		this.map = new TiledMap("src/main/resources/map/lvl.tmx");
+	this.map = new TiledMap("src/main/resources/map/lvl.tmx");
 		addlist();
 }
 
@@ -54,7 +66,6 @@ clear();
 	case 1: 
 		//Pour le niveau 1
 			this.listControleurlvl.add(ControleurPerso.droite);//start
-			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.haut);
 			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.droite);
@@ -68,7 +79,6 @@ clear();
 	case 2:
 		//Pour le niveau 2
 			this.listControleurlvl.add(ControleurPerso.droite);//start
-			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.haut);
 			this.listControleurlvl.add(ControleurPerso.haut);
 			this.listControleurlvl.add(ControleurPerso.droite);
@@ -90,15 +100,15 @@ clear();
 			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.droite);
+			this.listControleurlvl.add(ControleurPerso.haut);
+			this.listControleurlvl.add(ControleurPerso.haut);
+			this.listControleurlvl.add(ControleurPerso.gauche);
+			this.listControleurlvl.add(ControleurPerso.gauche);
+			this.listControleurlvl.add(ControleurPerso.gauche);
+			this.listControleurlvl.add(ControleurPerso.gauche);
+			this.listControleurlvl.add(ControleurPerso.haut);
+			this.listControleurlvl.add(ControleurPerso.haut);
 			this.listControleurlvl.add(ControleurPerso.droite);
-			this.listControleurlvl.add(ControleurPerso.haut);
-			this.listControleurlvl.add(ControleurPerso.haut);
-			this.listControleurlvl.add(ControleurPerso.gauche);
-			this.listControleurlvl.add(ControleurPerso.gauche);
-			this.listControleurlvl.add(ControleurPerso.gauche);
-			this.listControleurlvl.add(ControleurPerso.gauche);
-			this.listControleurlvl.add(ControleurPerso.haut);
-			this.listControleurlvl.add(ControleurPerso.haut);
 			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.droite);
 			this.listControleurlvl.add(ControleurPerso.droite);
@@ -108,5 +118,8 @@ clear();
 	}	
 		
 }
+public void setniveau(int p_niveau){
+	this.niveau=p_niveau;
+	}
 
 }

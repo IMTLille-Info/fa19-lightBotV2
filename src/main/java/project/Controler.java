@@ -116,7 +116,12 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 			}
 			break;
 		case 2 :
-			if(this.compteurList!=15){
+			if(this.compteurList!=14){
+				 this.listControleur.add(p_control);
+			}
+			break;
+		case 3 :
+			if(this.compteurList!=18){
 				 this.listControleur.add(p_control);
 			}
 			break;
@@ -124,4 +129,8 @@ public class Controler {// la classe controleur gere les boutons des actions du 
 			
 	}
 	/* Fin */
+	public void setniveau(int p_niveau){
+		this.niveau=p_niveau;
+		}
+	
 }

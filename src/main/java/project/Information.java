@@ -80,11 +80,18 @@ public class Information {
 			this.compteurList=10-this.compteurList;
 			break;
 		case 2:
-			this.compteurList=15-this.compteurList;
+			this.compteurList=14-this.compteurList;
+			break;
+		case 3:
+			this.compteurList=18-this.compteurList;
 			break;
 		
 		}
 		return this.compteurList;
 	}
 	/* Fin */
+	public void setniveau(int p_niveau){
+		this.niveau=p_niveau;
+		}
+	
 }
