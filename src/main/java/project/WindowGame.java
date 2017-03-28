@@ -138,7 +138,7 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 	            container.exit();
 	        }
 	        this.robot.moving = false;
-	        if (Input.KEY_W == key) {liste();}
+	       
 	    }
 	
 	@Override
@@ -160,31 +160,30 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 				} 
 			if(y>486 && y<582){// (550 -64) +96
 				if(x>50 && x <146){
-					this.str="controleur haut";
+					
 					this.controleur.add(ControleurPerso.haut);
 				}
 				else if(x>178 && x<274){
 					
-					this.str="controleur gauche";
+					
 					this.controleur.add(ControleurPerso.gauche);
 				}
 				else if(x>306 && x<402){
-					this.str="controleur droite";
+					
 					this.controleur.add(ControleurPerso.droite);
 				}
 				else if(x>434 && x<530){
-					this.str="controleur bas";
+					
 					this.controleur.add(ControleurPerso.bas);
 				}
-				else this.str="mouse controleur";
+				
 			}
-			else this.str="mouse active";break;
 	}
 	}
 	@Override
 	public void mouseReleased(int button, int x, int y) {
 		 //this.str="";
-		liste();
+		
 	}
 	
 	public void setniveau(int p_niveau){
@@ -196,14 +195,6 @@ public class WindowGame extends BasicGame {// cette classe est le coeur du jeu
 		}
 	}
 	
-	public void liste(){// juste pour les test
-		
-		//this.str=""+listControleurClickUtilisateur.get(listControleurClickUtilisateur.size()-1);
-		this.str="";
-		for(int i=0;i<=this.listControler.size()-1;i++){
-			this.str=this.str+this.listControler.get(i)+", ";
-		}
-	}
 }
 
 //http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html

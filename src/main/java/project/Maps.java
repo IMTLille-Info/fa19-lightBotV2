@@ -59,7 +59,7 @@ public void clear(){
 	}
 }
 
-void addlist(){
+public void addlist(){
 clear();
 	switch(niveau){
 
