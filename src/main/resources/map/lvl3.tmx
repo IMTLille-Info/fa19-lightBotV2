@@ -9,9 +9,12 @@
  <tileset firstgid="3" name="tile_13" tilewidth="32" tileheight="32" tilecount="16">
   <image source="../../../../../lightBotV2/src/main/resources/map/tuiles/tile_13.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="19" name="b" tilewidth="32" tileheight="32" tilecount="1">
+  <image source="tuiles/grass - Copie.png" width="32" height="32"/>
+ </tileset>
  <layer name="Calque de Tile 1" width="7" height="7">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NiYGBgwoEZcWBeKE2KPnxqYWwOEvQhYwAVCd2fxAAAAA==
+   H4sIAAAAAAAAC2NiYGBgwoGFcWBeKE2KPnxqYWwOEvQhYwDQCkPrxAAAAA==
   </data>
  </layer>
 </map>
